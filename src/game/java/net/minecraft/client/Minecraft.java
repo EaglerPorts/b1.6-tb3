@@ -619,7 +619,7 @@ public class Minecraft implements Runnable {
 		if (Display.isActive()) {
 			if (!this.inGameHasFocus) {
 				this.inGameHasFocus = true;
-				this.mouseHelper.grabMouseCursor();
+				if (this.currentScreen == null) this.mouseHelper.grabMouseCursor();
 				this.displayGuiScreen((GuiScreen) null);
 				this.leftClickCounter = 10000;
 				this.mouseTicksRan = this.ticksRan + 10000;

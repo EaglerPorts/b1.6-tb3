@@ -5,6 +5,8 @@ import java.util.Random;
 
 import net.lax1dude.eaglercraft.internal.buffer.FloatBuffer;
 import net.minecraft.client.Minecraft;
+
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -137,6 +139,12 @@ public class EntityRenderer {
 		float var3 = 70.0F;
 		if(var2.isInsideOfMaterial(Material.water)) {
 			var3 = 60.0F;
+		}
+
+		if (this.mc.currentScreen == null) {
+			if (Keyboard.isKeyDown(this.mc.gameSettings.keyBindZoom.keyCode)) {
+				var3 /= 4.0F;
+			}
 		}
 
 		if(var2.X <= 0) {
