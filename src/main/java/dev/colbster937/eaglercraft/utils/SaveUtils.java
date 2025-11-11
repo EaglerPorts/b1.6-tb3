@@ -19,6 +19,7 @@ public class SaveUtils {
     mc = _mc;
     i = new DirStorage(_mc, "saves");
     dir = new VFile2(Minecraft.getMinecraftDir(), "saves");
+    findLegacyWorlds();
   }
 
   public static List<SaveFormatComparator> getWorlds() {
