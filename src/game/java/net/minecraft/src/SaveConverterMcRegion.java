@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
+import dev.colbster937.eaglercraft.utils.SaveUtils;
 import net.lax1dude.eaglercraft.internal.vfs2.VFile2;
 
 public class SaveConverterMcRegion extends SaveFormatOld {
@@ -21,53 +22,7 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 	}
 
 	public List func_22176_b() {
-		ArrayList var1 = new ArrayList();
-		List<VFile2> var2 = this.field_22180_a.listFiles(true);
-		int var3 = var2.size();
-
-		ArrayList var4 = new ArrayList();
-		String var5 = this.field_22180_a.getPath();
-
-		for (int var6 = 0; var6 < var3; ++var6) {
-			VFile2 var7 = var2.get(var6);
-			String var8 = var7.getPath();
-			if (var8 != null && var8.startsWith(var5)) {
-				String var9 = var8.substring(var5.length());
-				if (var9.startsWith("/")) {
-					var9 = var9.substring(1);
-				}
-				if (!MathHelper.stringNullOrLengthZero(var9)) {
-					int var10 = var9.indexOf('/');
-					String var11 = var10 >= 0 ? var9.substring(0, var10) : var9;
-					if (!MathHelper.stringNullOrLengthZero(var11) && !var4.contains(var11)) {
-						var4.add(var11);
-					}
-				}
-			}
-		}
-
-		int var12 = var4.size();
-		for (int var13 = 0; var13 < var12; ++var13) {
-			String var14 = (String)var4.get(var13);
-			WorldInfo var15 = this.func_22173_b(var14);
-			if (var15 != null) {
-				boolean var16 = var15.getSaveVersion() != 19132;
-				String var17 = var15.getWorldName();
-				if (var17 == null || MathHelper.stringNullOrLengthZero(var17)) {
-					var17 = var14;
-				}
-
-				var1.add(new SaveFormatComparator(
-					var14,
-					var17,
-					var15.getLastTimePlayed(),
-					var15.getSizeOnDisk(),
-					var16
-				));
-			}
-		}
-
-		return var1;
+		return SaveUtils.getWorlds();
 	}
 
 	public void flushCache() {

@@ -3,6 +3,7 @@ package net.minecraft.src;
 import java.io.IOException;
 
 import dev.colbster937.eaglercraft.rp.TexturePack;
+import dev.colbster937.eaglercraft.utils.ScuffedUtils;
 import net.lax1dude.eaglercraft.EagRuntime;
 import net.lax1dude.eaglercraft.internal.FileChooserResult;
 import net.lax1dude.eaglercraft.internal.vfs2.VFile2;
@@ -31,7 +32,7 @@ public class GuiTexturePacks extends GuiScreen {
 	protected void actionPerformed(GuiButton var1) {
 		if(var1.enabled) {
 			if(var1.id == 5) {
-				EagRuntime.displayFileChooser("application/zip", ".zip");
+				ScuffedUtils.showZipFileChooser();
 			} else if(var1.id == 6) {
 				this.mc.renderEngine.refreshTextures();
 				this.mc.displayGuiScreen(this.guiScreen);
@@ -65,14 +66,7 @@ public class GuiTexturePacks extends GuiScreen {
 
 	public void updateScreen() {
 		super.updateScreen();
-		if (EagRuntime.fileChooserHasResult()) {
-			FileChooserResult result = EagRuntime.getFileChooserResult();
-			try {
-				TexturePack.addTexturePack(result, this.mc.loadingScreen);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		if (EagRuntime.fileChooserHasResult()) TexturePack.addTexturePack(this.mc.loadingScreen, EagRuntime.getFileChooserResult());
 		--this.field_6454_o;
 	}
 

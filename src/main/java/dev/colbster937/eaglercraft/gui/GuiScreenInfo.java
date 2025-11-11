@@ -41,7 +41,7 @@ public class GuiScreenInfo extends GuiScreen {
   protected void actionPerformed(GuiButton var1) {
     if (var1.id == 0) {
       if (this.parent == null)
-        this.mc.displayGuiScreen(new GuiMainMenu());
+        this.mc.displayGuiScreen(this.mc.menu);
       else
         this.mc.displayGuiScreen(parent);
     }
