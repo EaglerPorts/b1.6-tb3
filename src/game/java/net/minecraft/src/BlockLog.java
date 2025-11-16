@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockLog extends Block {
 	protected BlockLog(int var1) {
@@ -23,14 +23,14 @@ public class BlockLog extends Block {
 	public void onBlockRemoval(World var1, int var2, int var3, int var4) {
 		byte var5 = 4;
 		int var6 = var5 + 1;
-		if(var1.checkChunksExist(var2 - var6, var3 - var6, var4 - var6, var2 + var6, var3 + var6, var4 + var6)) {
-			for(int var7 = -var5; var7 <= var5; ++var7) {
-				for(int var8 = -var5; var8 <= var5; ++var8) {
-					for(int var9 = -var5; var9 <= var5; ++var9) {
+		if (var1.checkChunksExist(var2 - var6, var3 - var6, var4 - var6, var2 + var6, var3 + var6, var4 + var6)) {
+			for (int var7 = -var5; var7 <= var5; ++var7) {
+				for (int var8 = -var5; var8 <= var5; ++var8) {
+					for (int var9 = -var5; var9 <= var5; ++var9) {
 						int var10 = var1.getBlockId(var2 + var7, var3 + var8, var4 + var9);
-						if(var10 == Block.leaves.blockID) {
+						if (var10 == Block.leaves.blockID) {
 							int var11 = var1.getBlockMetadata(var2 + var7, var3 + var8, var4 + var9);
-							if((var11 & 8) == 0) {
+							if ((var11 & 8) == 0) {
 								var1.setBlockMetadata(var2 + var7, var3 + var8, var4 + var9, var11 | 8);
 							}
 						}

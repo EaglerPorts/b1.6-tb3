@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -27,18 +27,21 @@ public class GuiAchievements extends GuiScreen {
 		this.field_27120_x = var1;
 		short var2 = 141;
 		short var3 = 141;
-		this.field_27116_m = this.field_27114_o = this.field_27112_q = (double)(AchievementList.openInventory.displayColumn * 24 - var2 / 2 - 12);
-		this.field_27115_n = this.field_27113_p = this.field_27111_r = (double)(AchievementList.openInventory.displayRow * 24 - var3 / 2);
+		this.field_27116_m = this.field_27114_o = this.field_27112_q = (double) (AchievementList.openInventory.displayColumn
+				* 24 - var2 / 2 - 12);
+		this.field_27115_n = this.field_27113_p = this.field_27111_r = (double) (AchievementList.openInventory.displayRow
+				* 24 - var3 / 2);
 	}
 
 	public void initGui() {
 		this.controlList.clear();
-		this.controlList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20, StatCollector.translateToLocal("gui.done")));
+		this.controlList.add(new GuiSmallButton(1, this.width / 2 + 24, this.height / 2 + 74, 80, 20,
+				StatCollector.translateToLocal("gui.done")));
 	}
 
 	protected void actionPerformed(GuiButton var1) {
-		if(var1.id == 1) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+		if (var1.id == 1) {
+			this.mc.displayGuiScreen((GuiScreen) null);
 			this.mc.setIngameFocus();
 		}
 
@@ -46,8 +49,8 @@ public class GuiAchievements extends GuiScreen {
 	}
 
 	protected void keyTyped(char var1, int var2) {
-		if(var2 == this.mc.gameSettings.keyBindInventory.keyCode) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+		if (var2 == this.mc.gameSettings.keyBindInventory.keyCode) {
+			this.mc.displayGuiScreen((GuiScreen) null);
 			this.mc.setIngameFocus();
 		} else {
 			super.keyTyped(var1, var2);
@@ -56,17 +59,18 @@ public class GuiAchievements extends GuiScreen {
 	}
 
 	public void drawScreen(int var1, int var2, float var3) {
-		if(Mouse.isButtonDown(0)) {
+		if (Mouse.isButtonDown(0)) {
 			int var4 = (this.width - this.field_27121_a) / 2;
 			int var5 = (this.height - this.field_27119_i) / 2;
 			int var6 = var4 + 8;
 			int var7 = var5 + 17;
-			if((this.field_27122_w == 0 || this.field_27122_w == 1) && var1 >= var6 && var1 < var6 + 224 && var2 >= var7 && var2 < var7 + 155) {
-				if(this.field_27122_w == 0) {
+			if ((this.field_27122_w == 0 || this.field_27122_w == 1) && var1 >= var6 && var1 < var6 + 224 && var2 >= var7
+					&& var2 < var7 + 155) {
+				if (this.field_27122_w == 0) {
 					this.field_27122_w = 1;
 				} else {
-					this.field_27114_o -= (double)(var1 - this.field_27118_j);
-					this.field_27113_p -= (double)(var2 - this.field_27117_l);
+					this.field_27114_o -= (double) (var1 - this.field_27118_j);
+					this.field_27113_p -= (double) (var2 - this.field_27117_l);
 					this.field_27112_q = this.field_27116_m = this.field_27114_o;
 					this.field_27111_r = this.field_27115_n = this.field_27113_p;
 				}
@@ -75,20 +79,20 @@ public class GuiAchievements extends GuiScreen {
 				this.field_27117_l = var2;
 			}
 
-			if(this.field_27112_q < (double)field_27126_s) {
-				this.field_27112_q = (double)field_27126_s;
+			if (this.field_27112_q < (double) field_27126_s) {
+				this.field_27112_q = (double) field_27126_s;
 			}
 
-			if(this.field_27111_r < (double)field_27125_t) {
-				this.field_27111_r = (double)field_27125_t;
+			if (this.field_27111_r < (double) field_27125_t) {
+				this.field_27111_r = (double) field_27125_t;
 			}
 
-			if(this.field_27112_q >= (double)field_27124_u) {
-				this.field_27112_q = (double)(field_27124_u - 1);
+			if (this.field_27112_q >= (double) field_27124_u) {
+				this.field_27112_q = (double) (field_27124_u - 1);
 			}
 
-			if(this.field_27111_r >= (double)field_27123_v) {
-				this.field_27111_r = (double)(field_27123_v - 1);
+			if (this.field_27111_r >= (double) field_27123_v) {
+				this.field_27111_r = (double) (field_27123_v - 1);
 			}
 		} else {
 			this.field_27122_w = 0;
@@ -108,7 +112,7 @@ public class GuiAchievements extends GuiScreen {
 		this.field_27115_n = this.field_27113_p;
 		double var1 = this.field_27112_q - this.field_27114_o;
 		double var3 = this.field_27111_r - this.field_27113_p;
-		if(var1 * var1 + var3 * var3 < 4.0D) {
+		if (var1 * var1 + var3 * var3 < 4.0D) {
 			this.field_27114_o += var1;
 			this.field_27113_p += var3;
 		} else {
@@ -125,21 +129,21 @@ public class GuiAchievements extends GuiScreen {
 	}
 
 	protected void func_27109_b(int var1, int var2, float var3) {
-		int var4 = MathHelper.floor_double(this.field_27116_m + (this.field_27114_o - this.field_27116_m) * (double)var3);
-		int var5 = MathHelper.floor_double(this.field_27115_n + (this.field_27113_p - this.field_27115_n) * (double)var3);
-		if(var4 < field_27126_s) {
+		int var4 = MathHelper.floor_double(this.field_27116_m + (this.field_27114_o - this.field_27116_m) * (double) var3);
+		int var5 = MathHelper.floor_double(this.field_27115_n + (this.field_27113_p - this.field_27115_n) * (double) var3);
+		if (var4 < field_27126_s) {
 			var4 = field_27126_s;
 		}
 
-		if(var5 < field_27125_t) {
+		if (var5 < field_27125_t) {
 			var5 = field_27125_t;
 		}
 
-		if(var4 >= field_27124_u) {
+		if (var4 >= field_27124_u) {
 			var4 = field_27124_u - 1;
 		}
 
-		if(var5 >= field_27123_v) {
+		if (var5 >= field_27123_v) {
 			var5 = field_27123_v - 1;
 		}
 
@@ -164,36 +168,37 @@ public class GuiAchievements extends GuiScreen {
 		int var15 = (var5 + 288) % 16;
 		Random var21 = new Random();
 
-		for(int var22 = 0; var22 * 16 - var15 < 155; ++var22) {
-			float var23 = 0.6F - (float)(var13 + var22) / 25.0F * 0.3F;
+		for (int var22 = 0; var22 * 16 - var15 < 155; ++var22) {
+			float var23 = 0.6F - (float) (var13 + var22) / 25.0F * 0.3F;
 			GL11.glColor4f(var23, var23, var23, 1.0F);
 
-			for(int var24 = 0; var24 * 16 - var14 < 224; ++var24) {
-				var21.setSeed((long)(1234 + var12 + var24));
+			for (int var24 = 0; var24 * 16 - var14 < 224; ++var24) {
+				var21.setSeed((long) (1234 + var12 + var24));
 				var21.nextInt();
 				int var25 = var21.nextInt(1 + var13 + var22) + (var13 + var22) / 2;
 				int var26 = Block.sand.blockIndexInTexture;
-				if(var25 <= 37 && var13 + var22 != 35) {
-					if(var25 == 22) {
-						if(var21.nextInt(2) == 0) {
+				if (var25 <= 37 && var13 + var22 != 35) {
+					if (var25 == 22) {
+						if (var21.nextInt(2) == 0) {
 							var26 = Block.oreDiamond.blockIndexInTexture;
 						} else {
 							var26 = Block.oreRedstone.blockIndexInTexture;
 						}
-					} else if(var25 == 10) {
+					} else if (var25 == 10) {
 						var26 = Block.oreIron.blockIndexInTexture;
-					} else if(var25 == 8) {
+					} else if (var25 == 8) {
 						var26 = Block.oreCoal.blockIndexInTexture;
-					} else if(var25 > 4) {
+					} else if (var25 > 4) {
 						var26 = Block.stone.blockIndexInTexture;
-					} else if(var25 > 0) {
+					} else if (var25 > 0) {
 						var26 = Block.dirt.blockIndexInTexture;
 					}
 				} else {
 					var26 = Block.bedrock.blockIndexInTexture;
 				}
 
-				this.drawTexturedModalRect(var10 + var24 * 16 - var14, var11 + var22 * 16 - var15, var26 % 16 << 4, var26 >> 4 << 4, 16, 16);
+				this.drawTexturedModalRect(var10 + var24 * 16 - var14, var11 + var22 * 16 - var15, var26 % 16 << 4,
+						var26 >> 4 << 4, 16, 16);
 			}
 		}
 
@@ -205,9 +210,9 @@ public class GuiAchievements extends GuiScreen {
 		int var17;
 		int var33;
 		int var38;
-		for(var12 = 0; var12 < AchievementList.achievementList.size(); ++var12) {
-			Achievement var28 = (Achievement)AchievementList.achievementList.get(var12);
-			if(var28.parentAchievement != null) {
+		for (var12 = 0; var12 < AchievementList.achievementList.size(); ++var12) {
+			Achievement var28 = (Achievement) AchievementList.achievementList.get(var12);
+			if (var28.parentAchievement != null) {
 				var14 = var28.displayColumn * 24 - var4 + 11 + var10;
 				var15 = var28.displayRow * 24 - var5 + 11 + var11;
 				var16 = var28.parentAchievement.displayColumn * 24 - var4 + 11 + var10;
@@ -215,10 +220,10 @@ public class GuiAchievements extends GuiScreen {
 				boolean var18 = false;
 				boolean var19 = this.field_27120_x.hasAchievementUnlocked(var28);
 				boolean var20 = this.field_27120_x.func_27181_b(var28);
-				var38 = Math.sin((double)(System.currentTimeMillis() % 600L) / 600.0D * Math.PI * 2.0D) > 0.6D ? 255 : 130;
-				if(var19) {
+				var38 = Math.sin((double) (System.currentTimeMillis() % 600L) / 600.0D * Math.PI * 2.0D) > 0.6D ? 255 : 130;
+				if (var19) {
 					var33 = -9408400;
-				} else if(var20) {
+				} else if (var20) {
 					var33 = '\uff00' + (var38 << 24);
 				} else {
 					var33 = -16777216;
@@ -240,17 +245,17 @@ public class GuiAchievements extends GuiScreen {
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
 
 		int var34;
-		for(var14 = 0; var14 < AchievementList.achievementList.size(); ++var14) {
-			Achievement var30 = (Achievement)AchievementList.achievementList.get(var14);
+		for (var14 = 0; var14 < AchievementList.achievementList.size(); ++var14) {
+			Achievement var30 = (Achievement) AchievementList.achievementList.get(var14);
 			var16 = var30.displayColumn * 24 - var4;
 			var17 = var30.displayRow * 24 - var5;
-			if(var16 >= -100 && var17 >= -21 && var16 <= 224 && var17 <= 155) {
+			if (var16 >= -100 && var17 >= -21 && var16 <= 224 && var17 <= 155) {
 				float var35;
-				if(this.field_27120_x.hasAchievementUnlocked(var30)) {
+				if (this.field_27120_x.hasAchievementUnlocked(var30)) {
 					var35 = 1.0F;
 					GL11.glColor4f(var35, var35, var35, 1.0F);
-				} else if(this.field_27120_x.func_27181_b(var30)) {
-					var35 = Math.sin((double)(System.currentTimeMillis() % 600L) / 600.0D * Math.PI * 2.0D) < 0.6D ? 0.6F : 0.8F;
+				} else if (this.field_27120_x.func_27181_b(var30)) {
+					var35 = Math.sin((double) (System.currentTimeMillis() % 600L) / 600.0D * Math.PI * 2.0D) < 0.6D ? 0.6F : 0.8F;
 					GL11.glColor4f(var35, var35, var35, 1.0F);
 				} else {
 					var35 = 0.3F;
@@ -260,13 +265,13 @@ public class GuiAchievements extends GuiScreen {
 				this.mc.renderEngine.bindTexture(var7);
 				var33 = var10 + var16;
 				var34 = var11 + var17;
-				if(var30.getSpecial()) {
+				if (var30.getSpecial()) {
 					this.drawTexturedModalRect(var33 - 2, var34 - 2, 26, 202, 26, 26);
 				} else {
 					this.drawTexturedModalRect(var33 - 2, var34 - 2, 0, 202, 26, 26);
 				}
 
-				if(!this.field_27120_x.func_27181_b(var30)) {
+				if (!this.field_27120_x.func_27181_b(var30)) {
 					float var36 = 0.1F;
 					GL11.glColor4f(var36, var36, var36, 1.0F);
 					var29.field_27004_a = false;
@@ -276,12 +281,12 @@ public class GuiAchievements extends GuiScreen {
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				var29.renderItemIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, var30.theItemStack, var33 + 3, var34 + 3);
 				GL11.glDisable(GL11.GL_LIGHTING);
-				if(!this.field_27120_x.func_27181_b(var30)) {
+				if (!this.field_27120_x.func_27181_b(var30)) {
 					var29.field_27004_a = true;
 				}
 
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-				if(var1 >= var33 && var1 <= var33 + 22 && var2 >= var34 && var2 <= var34 + 22) {
+				if (var1 >= var33 && var1 <= var33 + 22 && var2 >= var34 && var2 <= var34 + 22) {
 					var27 = var30;
 				}
 			}
@@ -298,32 +303,38 @@ public class GuiAchievements extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		super.drawScreen(var1, var2, var3);
-		if(var27 != null) {
+		if (var27 != null) {
 			String var31 = var27.statName;
 			String var32 = var27.getDescription();
 			var17 = var1 + 12;
 			var33 = var2 - 4;
-			if(this.field_27120_x.func_27181_b(var27)) {
+			if (this.field_27120_x.func_27181_b(var27)) {
 				var34 = Math.max(this.fontRenderer.getStringWidth(var31), 120);
 				int var37 = this.fontRenderer.func_27277_a(var32, var34);
-				if(this.field_27120_x.hasAchievementUnlocked(var27)) {
+				if (this.field_27120_x.hasAchievementUnlocked(var27)) {
 					var37 += 12;
 				}
 
-				this.drawGradientRect(var17 - 3, var33 - 3, var17 + var34 + 3, var33 + var37 + 3 + 12, -1073741824, -1073741824);
+				this.drawGradientRect(var17 - 3, var33 - 3, var17 + var34 + 3, var33 + var37 + 3 + 12, -1073741824,
+						-1073741824);
 				this.fontRenderer.drawSplitString(var32, var17, var33 + 12, var34, -6250336);
-				if(this.field_27120_x.hasAchievementUnlocked(var27)) {
-					this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), var17, var33 + var37 + 4, -7302913);
+				if (this.field_27120_x.hasAchievementUnlocked(var27)) {
+					this.fontRenderer.drawStringWithShadow(StatCollector.translateToLocal("achievement.taken"), var17,
+							var33 + var37 + 4, -7302913);
 				}
 			} else {
 				var34 = Math.max(this.fontRenderer.getStringWidth(var31), 120);
-				String var39 = StatCollector.translateToLocalFormatted("achievement.requires", new Object[]{var27.parentAchievement.statName});
+				String var39 = StatCollector.translateToLocalFormatted("achievement.requires",
+						new Object[] { var27.parentAchievement.statName });
 				var38 = this.fontRenderer.func_27277_a(var39, var34);
-				this.drawGradientRect(var17 - 3, var33 - 3, var17 + var34 + 3, var33 + var38 + 12 + 3, -1073741824, -1073741824);
+				this.drawGradientRect(var17 - 3, var33 - 3, var17 + var34 + 3, var33 + var38 + 12 + 3, -1073741824,
+						-1073741824);
 				this.fontRenderer.drawSplitString(var39, var17, var33 + 12, var34, -9416624);
 			}
 
-			this.fontRenderer.drawStringWithShadow(var31, var17, var33, this.field_27120_x.func_27181_b(var27) ? (var27.getSpecial() ? -128 : -1) : (var27.getSpecial() ? -8355776 : -8355712));
+			this.fontRenderer.drawStringWithShadow(var31, var17, var33,
+					this.field_27120_x.func_27181_b(var27) ? (var27.getSpecial() ? -128 : -1)
+							: (var27.getSpecial() ? -8355776 : -8355712));
 		}
 
 		GL11.glEnable(GL11.GL_DEPTH_TEST);

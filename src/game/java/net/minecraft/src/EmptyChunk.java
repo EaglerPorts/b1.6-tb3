@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 import java.util.List;
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class EmptyChunk extends Chunk {
 	public EmptyChunk(World var1, int var2, int var3) {
@@ -118,7 +118,9 @@ public class EmptyChunk extends Chunk {
 	}
 
 	public Random func_997_a(long var1) {
-		return new Random(this.worldObj.getRandomSeed() + (long)(this.xPosition * this.xPosition * 4987142) + (long)(this.xPosition * 5947611) + (long)(this.zPosition * this.zPosition) * 4392871L + (long)(this.zPosition * 389711) ^ var1);
+		return new Random(this.worldObj.getRandomSeed() + (long) (this.xPosition * this.xPosition * 4987142)
+				+ (long) (this.xPosition * 5947611) + (long) (this.zPosition * this.zPosition) * 4392871L
+				+ (long) (this.zPosition * 389711) ^ var1);
 	}
 
 	public boolean func_21167_h() {

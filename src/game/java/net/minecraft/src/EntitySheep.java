@@ -1,9 +1,12 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class EntitySheep extends EntityAnimal {
-	public static final float[][] fleeceColorTable = new float[][]{{1.0F, 1.0F, 1.0F}, {0.95F, 0.7F, 0.2F}, {0.9F, 0.5F, 0.85F}, {0.6F, 0.7F, 0.95F}, {0.9F, 0.9F, 0.2F}, {0.5F, 0.8F, 0.1F}, {0.95F, 0.7F, 0.8F}, {0.3F, 0.3F, 0.3F}, {0.6F, 0.6F, 0.6F}, {0.3F, 0.6F, 0.7F}, {0.7F, 0.4F, 0.9F}, {0.2F, 0.4F, 0.8F}, {0.5F, 0.4F, 0.3F}, {0.4F, 0.5F, 0.2F}, {0.8F, 0.3F, 0.3F}, {0.1F, 0.1F, 0.1F}};
+	public static final float[][] fleeceColorTable = new float[][] { { 1.0F, 1.0F, 1.0F }, { 0.95F, 0.7F, 0.2F },
+			{ 0.9F, 0.5F, 0.85F }, { 0.6F, 0.7F, 0.95F }, { 0.9F, 0.9F, 0.2F }, { 0.5F, 0.8F, 0.1F }, { 0.95F, 0.7F, 0.8F },
+			{ 0.3F, 0.3F, 0.3F }, { 0.6F, 0.6F, 0.6F }, { 0.3F, 0.6F, 0.7F }, { 0.7F, 0.4F, 0.9F }, { 0.2F, 0.4F, 0.8F },
+			{ 0.5F, 0.4F, 0.3F }, { 0.4F, 0.5F, 0.2F }, { 0.8F, 0.3F, 0.3F }, { 0.1F, 0.1F, 0.1F } };
 
 	public EntitySheep(World var1) {
 		super(var1);
@@ -13,19 +16,19 @@ public class EntitySheep extends EntityAnimal {
 
 	protected void entityInit() {
 		super.entityInit();
-		this.bC.addObject(16, Byte.valueOf((byte)0));
+		this.bC.addObject(16, Byte.valueOf((byte) 0));
 	}
 
 	public boolean attackEntityFrom(Entity var1, int var2) {
-		if(!this.aH.multiplayerWorld && !this.getSheared() && var1 instanceof EntityLiving) {
+		if (!this.aH.multiplayerWorld && !this.getSheared() && var1 instanceof EntityLiving) {
 			this.setSheared(true);
 			int var3 = 1 + this.br.nextInt(3);
 
-			for(int var4 = 0; var4 < var3; ++var4) {
+			for (int var4 = 0; var4 < var3; ++var4) {
 				EntityItem var5 = this.entityDropItem(new ItemStack(Block.cloth.blockID, 1, this.getFleeceColor()), 1.0F);
-				var5.motionX += (double)(this.br.nextFloat() * 0.05F);
-				var5.posZ += (double)((this.br.nextFloat() - this.br.nextFloat()) * 0.1F);
-				var5.motionY += (double)((this.br.nextFloat() - this.br.nextFloat()) * 0.1F);
+				var5.motionX += (double) (this.br.nextFloat() * 0.05F);
+				var5.posZ += (double) ((this.br.nextFloat() - this.br.nextFloat()) * 0.1F);
+				var5.motionY += (double) ((this.br.nextFloat() - this.br.nextFloat()) * 0.1F);
 			}
 		}
 
@@ -35,7 +38,7 @@ public class EntitySheep extends EntityAnimal {
 	public void writeEntityToNBT(NBTTagCompound var1) {
 		super.writeEntityToNBT(var1);
 		var1.setBoolean("Sheared", this.getSheared());
-		var1.setByte("Color", (byte)this.getFleeceColor());
+		var1.setByte("Color", (byte) this.getFleeceColor());
 	}
 
 	public void readEntityFromNBT(NBTTagCompound var1) {
@@ -62,7 +65,7 @@ public class EntitySheep extends EntityAnimal {
 
 	public void setFleeceColor(int var1) {
 		byte var2 = this.bC.getWatchableObjectByte(16);
-		this.bC.updateObject(16, Byte.valueOf((byte)(var2 & 240 | var1 & 15)));
+		this.bC.updateObject(16, Byte.valueOf((byte) (var2 & 240 | var1 & 15)));
 	}
 
 	public boolean getSheared() {
@@ -71,10 +74,10 @@ public class EntitySheep extends EntityAnimal {
 
 	public void setSheared(boolean var1) {
 		byte var2 = this.bC.getWatchableObjectByte(16);
-		if(var1) {
-			this.bC.updateObject(16, Byte.valueOf((byte)(var2 | 16)));
+		if (var1) {
+			this.bC.updateObject(16, Byte.valueOf((byte) (var2 | 16)));
 		} else {
-			this.bC.updateObject(16, Byte.valueOf((byte)(var2 & -17)));
+			this.bC.updateObject(16, Byte.valueOf((byte) (var2 & -17)));
 		}
 
 	}

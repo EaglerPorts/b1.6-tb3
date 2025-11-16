@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class Particle {
 	private static Random field_25128_s = new Random();
@@ -29,12 +29,12 @@ public class Particle {
 		this.field_25142_e *= this.field_25140_g;
 		this.field_25141_f *= this.field_25140_g;
 		this.field_25141_f += 0.1D;
-		if(++this.field_25138_i > this.field_25137_j) {
+		if (++this.field_25138_i > this.field_25137_j) {
 			this.func_25126_b();
 		}
 
-		this.field_25133_n = 2.0D - (double)this.field_25138_i / (double)this.field_25137_j * 2.0D;
-		if(this.field_25133_n > 1.0D) {
+		this.field_25133_n = 2.0D - (double) this.field_25138_i / (double) this.field_25137_j * 2.0D;
+		if (this.field_25133_n > 1.0D) {
 			this.field_25133_n = 1.0D;
 		}
 

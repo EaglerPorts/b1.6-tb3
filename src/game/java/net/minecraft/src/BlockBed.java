@@ -1,9 +1,9 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockBed extends Block {
-	public static final int[][] headBlockToFootBlockMap = new int[][]{{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+	public static final int[][] headBlockToFootBlockMap = new int[][] { { 0, 1 }, { -1, 0 }, { 0, -1 }, { 1, 0 } };
 
 	public BlockBed(int var1) {
 		super(var1, 134, Material.cloth);
@@ -12,31 +12,32 @@ public class BlockBed extends Block {
 
 	public boolean blockActivated(World var1, int var2, int var3, int var4, EntityPlayer var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
-		if(!var1.worldProvider.canRespawnHere()) {
-			var1.newExplosion((Entity)null, (double)((float)var2 + 0.5F), (double)((float)var3 + 0.5F), (double)((float)var4 + 0.5F), 5.0F, true);
+		if (!var1.worldProvider.canRespawnHere()) {
+			var1.newExplosion((Entity) null, (double) ((float) var2 + 0.5F), (double) ((float) var3 + 0.5F),
+					(double) ((float) var4 + 0.5F), 5.0F, true);
 			return true;
 		} else {
-			if(!isBlockFootOfBed(var6)) {
+			if (!isBlockFootOfBed(var6)) {
 				int var7 = getDirectionFromMetadata(var6);
 				var2 += headBlockToFootBlockMap[var7][0];
 				var4 += headBlockToFootBlockMap[var7][1];
-				if(var1.getBlockId(var2, var3, var4) != this.blockID) {
+				if (var1.getBlockId(var2, var3, var4) != this.blockID) {
 					return true;
 				}
 
 				var6 = var1.getBlockMetadata(var2, var3, var4);
 			}
 
-			if(isBedOccupied(var6)) {
+			if (isBedOccupied(var6)) {
 				var5.addChatMessage("tile.bed.occupied");
 				return true;
 			} else {
 				EnumStatus var8 = var5.sleepInBedAt(var2, var3, var4);
-				if(var8 == EnumStatus.OK) {
+				if (var8 == EnumStatus.OK) {
 					setBedOccupied(var1, var2, var3, var4, true);
 					return true;
 				} else {
-					if(var8 == EnumStatus.NOT_POSSIBLE_NOW) {
+					if (var8 == EnumStatus.NOT_POSSIBLE_NOW) {
 						var5.addChatMessage("tile.bed.noSleep");
 					}
 
@@ -47,12 +48,16 @@ public class BlockBed extends Block {
 	}
 
 	public int getBlockTextureFromSideAndMetadata(int var1, int var2) {
-		if(var1 == 0) {
+		if (var1 == 0) {
 			return Block.planks.blockIndexInTexture;
 		} else {
 			int var3 = getDirectionFromMetadata(var2);
 			int var4 = ModelBed.bedDirection[var3][var1];
-			return isBlockFootOfBed(var2) ? (var4 == 2 ? this.blockIndexInTexture + 2 + 16 : (var4 != 5 && var4 != 4 ? this.blockIndexInTexture + 1 : this.blockIndexInTexture + 1 + 16)) : (var4 == 3 ? this.blockIndexInTexture - 1 + 16 : (var4 != 5 && var4 != 4 ? this.blockIndexInTexture : this.blockIndexInTexture + 16));
+			return isBlockFootOfBed(var2)
+					? (var4 == 2 ? this.blockIndexInTexture + 2 + 16
+							: (var4 != 5 && var4 != 4 ? this.blockIndexInTexture + 1 : this.blockIndexInTexture + 1 + 16))
+					: (var4 == 3 ? this.blockIndexInTexture - 1 + 16
+							: (var4 != 5 && var4 != 4 ? this.blockIndexInTexture : this.blockIndexInTexture + 16));
 		}
 	}
 
@@ -75,13 +80,15 @@ public class BlockBed extends Block {
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
 		int var7 = getDirectionFromMetadata(var6);
-		if(isBlockFootOfBed(var6)) {
-			if(var1.getBlockId(var2 - headBlockToFootBlockMap[var7][0], var3, var4 - headBlockToFootBlockMap[var7][1]) != this.blockID) {
+		if (isBlockFootOfBed(var6)) {
+			if (var1.getBlockId(var2 - headBlockToFootBlockMap[var7][0], var3,
+					var4 - headBlockToFootBlockMap[var7][1]) != this.blockID) {
 				var1.setBlockWithNotify(var2, var3, var4, 0);
 			}
-		} else if(var1.getBlockId(var2 + headBlockToFootBlockMap[var7][0], var3, var4 + headBlockToFootBlockMap[var7][1]) != this.blockID) {
+		} else if (var1.getBlockId(var2 + headBlockToFootBlockMap[var7][0], var3,
+				var4 + headBlockToFootBlockMap[var7][1]) != this.blockID) {
 			var1.setBlockWithNotify(var2, var3, var4, 0);
-			if(!var1.multiplayerWorld) {
+			if (!var1.multiplayerWorld) {
 				this.dropBlockAsItem(var1, var2, var3, var4, var6);
 			}
 		}
@@ -110,7 +117,7 @@ public class BlockBed extends Block {
 
 	public static void setBedOccupied(World var0, int var1, int var2, int var3, boolean var4) {
 		int var5 = var0.getBlockMetadata(var1, var2, var3);
-		if(var4) {
+		if (var4) {
 			var5 |= 4;
 		} else {
 			var5 &= -5;
@@ -123,16 +130,17 @@ public class BlockBed extends Block {
 		int var5 = var0.getBlockMetadata(var1, var2, var3);
 		int var6 = getDirectionFromMetadata(var5);
 
-		for(int var7 = 0; var7 <= 1; ++var7) {
+		for (int var7 = 0; var7 <= 1; ++var7) {
 			int var8 = var1 - headBlockToFootBlockMap[var6][0] * var7 - 1;
 			int var9 = var3 - headBlockToFootBlockMap[var6][1] * var7 - 1;
 			int var10 = var8 + 2;
 			int var11 = var9 + 2;
 
-			for(int var12 = var8; var12 <= var10; ++var12) {
-				for(int var13 = var9; var13 <= var11; ++var13) {
-					if(var0.func_28100_h(var12, var2 - 1, var13) && var0.isAirBlock(var12, var2, var13) && var0.isAirBlock(var12, var2 + 1, var13)) {
-						if(var4 <= 0) {
+			for (int var12 = var8; var12 <= var10; ++var12) {
+				for (int var13 = var9; var13 <= var11; ++var13) {
+					if (var0.func_28100_h(var12, var2 - 1, var13) && var0.isAirBlock(var12, var2, var13)
+							&& var0.isAirBlock(var12, var2 + 1, var13)) {
+						if (var4 <= 0) {
 							return new ChunkCoordinates(var12, var2, var13);
 						}
 

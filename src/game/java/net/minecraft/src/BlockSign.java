@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockSign extends BlockContainer {
 	private Class signEntityClass;
@@ -26,7 +26,7 @@ public class BlockSign extends BlockContainer {
 	}
 
 	public void setBlockBoundsBasedOnState(IBlockAccess var1, int var2, int var3, int var4) {
-		if(!this.isFreestanding) {
+		if (!this.isFreestanding) {
 			int var5 = var1.getBlockMetadata(var2, var3, var4);
 			float var6 = 9.0F / 32.0F;
 			float var7 = 25.0F / 32.0F;
@@ -34,19 +34,19 @@ public class BlockSign extends BlockContainer {
 			float var9 = 1.0F;
 			float var10 = 2.0F / 16.0F;
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-			if(var5 == 2) {
+			if (var5 == 2) {
 				this.setBlockBounds(var8, var6, 1.0F - var10, var9, var7, 1.0F);
 			}
 
-			if(var5 == 3) {
+			if (var5 == 3) {
 				this.setBlockBounds(var8, var6, 0.0F, var9, var7, var10);
 			}
 
-			if(var5 == 4) {
+			if (var5 == 4) {
 				this.setBlockBounds(1.0F - var10, var6, var8, 1.0F, var7, var9);
 			}
 
-			if(var5 == 5) {
+			if (var5 == 5) {
 				this.setBlockBounds(0.0F, var6, var8, var10, var7, var9);
 			}
 
@@ -67,7 +67,7 @@ public class BlockSign extends BlockContainer {
 
 	protected TileEntity getBlockEntity() {
 		try {
-			return (TileEntity)this.signEntityClass.newInstance();
+			return (TileEntity) this.signEntityClass.newInstance();
 		} catch (Exception var2) {
 			throw new RuntimeException(var2);
 		}
@@ -79,31 +79,31 @@ public class BlockSign extends BlockContainer {
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
 		boolean var6 = false;
-		if(this.isFreestanding) {
-			if(!var1.getBlockMaterial(var2, var3 - 1, var4).isSolid()) {
+		if (this.isFreestanding) {
+			if (!var1.getBlockMaterial(var2, var3 - 1, var4).isSolid()) {
 				var6 = true;
 			}
 		} else {
 			int var7 = var1.getBlockMetadata(var2, var3, var4);
 			var6 = true;
-			if(var7 == 2 && var1.getBlockMaterial(var2, var3, var4 + 1).isSolid()) {
+			if (var7 == 2 && var1.getBlockMaterial(var2, var3, var4 + 1).isSolid()) {
 				var6 = false;
 			}
 
-			if(var7 == 3 && var1.getBlockMaterial(var2, var3, var4 - 1).isSolid()) {
+			if (var7 == 3 && var1.getBlockMaterial(var2, var3, var4 - 1).isSolid()) {
 				var6 = false;
 			}
 
-			if(var7 == 4 && var1.getBlockMaterial(var2 + 1, var3, var4).isSolid()) {
+			if (var7 == 4 && var1.getBlockMaterial(var2 + 1, var3, var4).isSolid()) {
 				var6 = false;
 			}
 
-			if(var7 == 5 && var1.getBlockMaterial(var2 - 1, var3, var4).isSolid()) {
+			if (var7 == 5 && var1.getBlockMaterial(var2 - 1, var3, var4).isSolid()) {
 				var6 = false;
 			}
 		}
 
-		if(var6) {
+		if (var6) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 		}

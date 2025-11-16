@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class TileEntityDispenser extends TileEntity implements IInventory {
 	private ItemStack[] dispenserContents = new ItemStack[9];
@@ -15,16 +15,16 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 	}
 
 	public ItemStack decrStackSize(int var1, int var2) {
-		if(this.dispenserContents[var1] != null) {
+		if (this.dispenserContents[var1] != null) {
 			ItemStack var3;
-			if(this.dispenserContents[var1].stackSize <= var2) {
+			if (this.dispenserContents[var1].stackSize <= var2) {
 				var3 = this.dispenserContents[var1];
 				this.dispenserContents[var1] = null;
 				this.onInventoryChanged();
 				return var3;
 			} else {
 				var3 = this.dispenserContents[var1].splitStack(var2);
-				if(this.dispenserContents[var1].stackSize == 0) {
+				if (this.dispenserContents[var1].stackSize == 0) {
 					this.dispenserContents[var1] = null;
 				}
 
@@ -40,13 +40,13 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 		int var1 = -1;
 		int var2 = 1;
 
-		for(int var3 = 0; var3 < this.dispenserContents.length; ++var3) {
-			if(this.dispenserContents[var3] != null && this.dispenserRandom.nextInt(var2++) == 0) {
+		for (int var3 = 0; var3 < this.dispenserContents.length; ++var3) {
+			if (this.dispenserContents[var3] != null && this.dispenserRandom.nextInt(var2++) == 0) {
 				var1 = var3;
 			}
 		}
 
-		if(var1 >= 0) {
+		if (var1 >= 0) {
 			return this.decrStackSize(var1, 1);
 		} else {
 			return null;
@@ -55,7 +55,7 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 
 	public void setInventorySlotContents(int var1, ItemStack var2) {
 		this.dispenserContents[var1] = var2;
-		if(var2 != null && var2.stackSize > this.getInventoryStackLimit()) {
+		if (var2 != null && var2.stackSize > this.getInventoryStackLimit()) {
 			var2.stackSize = this.getInventoryStackLimit();
 		}
 
@@ -71,10 +71,10 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 		NBTTagList var2 = var1.getTagList("Items");
 		this.dispenserContents = new ItemStack[this.getSizeInventory()];
 
-		for(int var3 = 0; var3 < var2.tagCount(); ++var3) {
-			NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
+		for (int var3 = 0; var3 < var2.tagCount(); ++var3) {
+			NBTTagCompound var4 = (NBTTagCompound) var2.tagAt(var3);
 			int var5 = var4.getByte("Slot") & 255;
-			if(var5 >= 0 && var5 < this.dispenserContents.length) {
+			if (var5 >= 0 && var5 < this.dispenserContents.length) {
 				this.dispenserContents[var5] = new ItemStack(var4);
 			}
 		}
@@ -85,10 +85,10 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 		super.writeToNBT(var1);
 		NBTTagList var2 = new NBTTagList();
 
-		for(int var3 = 0; var3 < this.dispenserContents.length; ++var3) {
-			if(this.dispenserContents[var3] != null) {
+		for (int var3 = 0; var3 < this.dispenserContents.length; ++var3) {
+			if (this.dispenserContents[var3] != null) {
 				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("Slot", (byte)var3);
+				var4.setByte("Slot", (byte) var3);
 				this.dispenserContents[var3].writeToNBT(var4);
 				var2.setTag(var4);
 			}
@@ -102,6 +102,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 	}
 
 	public boolean canInteractWith(EntityPlayer var1) {
-		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : var1.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
+				: var1.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+						(double) this.zCoord + 0.5D) <= 64.0D;
 	}
 }

@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockLadder extends Block {
 	protected BlockLadder(int var1, int var2) {
@@ -10,19 +10,19 @@ public class BlockLadder extends Block {
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
 		float var6 = 2.0F / 16.0F;
-		if(var5 == 2) {
+		if (var5 == 2) {
 			this.setBlockBounds(0.0F, 0.0F, 1.0F - var6, 1.0F, 1.0F, 1.0F);
 		}
 
-		if(var5 == 3) {
+		if (var5 == 3) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var6);
 		}
 
-		if(var5 == 4) {
+		if (var5 == 4) {
 			this.setBlockBounds(1.0F - var6, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		}
 
-		if(var5 == 5) {
+		if (var5 == 5) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, var6, 1.0F, 1.0F);
 		}
 
@@ -32,19 +32,19 @@ public class BlockLadder extends Block {
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
 		float var6 = 2.0F / 16.0F;
-		if(var5 == 2) {
+		if (var5 == 2) {
 			this.setBlockBounds(0.0F, 0.0F, 1.0F - var6, 1.0F, 1.0F, 1.0F);
 		}
 
-		if(var5 == 3) {
+		if (var5 == 3) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var6);
 		}
 
-		if(var5 == 4) {
+		if (var5 == 4) {
 			this.setBlockBounds(1.0F - var6, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		}
 
-		if(var5 == 5) {
+		if (var5 == 5) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, var6, 1.0F, 1.0F);
 		}
 
@@ -64,24 +64,26 @@ public class BlockLadder extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World var1, int var2, int var3, int var4) {
-		return var1.func_28100_h(var2 - 1, var3, var4) ? true : (var1.func_28100_h(var2 + 1, var3, var4) ? true : (var1.func_28100_h(var2, var3, var4 - 1) ? true : var1.func_28100_h(var2, var3, var4 + 1)));
+		return var1.func_28100_h(var2 - 1, var3, var4) ? true
+				: (var1.func_28100_h(var2 + 1, var3, var4) ? true
+						: (var1.func_28100_h(var2, var3, var4 - 1) ? true : var1.func_28100_h(var2, var3, var4 + 1)));
 	}
 
 	public void onBlockPlaced(World var1, int var2, int var3, int var4, int var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
-		if((var6 == 0 || var5 == 2) && var1.func_28100_h(var2, var3, var4 + 1)) {
+		if ((var6 == 0 || var5 == 2) && var1.func_28100_h(var2, var3, var4 + 1)) {
 			var6 = 2;
 		}
 
-		if((var6 == 0 || var5 == 3) && var1.func_28100_h(var2, var3, var4 - 1)) {
+		if ((var6 == 0 || var5 == 3) && var1.func_28100_h(var2, var3, var4 - 1)) {
 			var6 = 3;
 		}
 
-		if((var6 == 0 || var5 == 4) && var1.func_28100_h(var2 + 1, var3, var4)) {
+		if ((var6 == 0 || var5 == 4) && var1.func_28100_h(var2 + 1, var3, var4)) {
 			var6 = 4;
 		}
 
-		if((var6 == 0 || var5 == 5) && var1.func_28100_h(var2 - 1, var3, var4)) {
+		if ((var6 == 0 || var5 == 5) && var1.func_28100_h(var2 - 1, var3, var4)) {
 			var6 = 5;
 		}
 
@@ -91,23 +93,23 @@ public class BlockLadder extends Block {
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
 		boolean var7 = false;
-		if(var6 == 2 && var1.func_28100_h(var2, var3, var4 + 1)) {
+		if (var6 == 2 && var1.func_28100_h(var2, var3, var4 + 1)) {
 			var7 = true;
 		}
 
-		if(var6 == 3 && var1.func_28100_h(var2, var3, var4 - 1)) {
+		if (var6 == 3 && var1.func_28100_h(var2, var3, var4 - 1)) {
 			var7 = true;
 		}
 
-		if(var6 == 4 && var1.func_28100_h(var2 + 1, var3, var4)) {
+		if (var6 == 4 && var1.func_28100_h(var2 + 1, var3, var4)) {
 			var7 = true;
 		}
 
-		if(var6 == 5 && var1.func_28100_h(var2 - 1, var3, var4)) {
+		if (var6 == 5 && var1.func_28100_h(var2 - 1, var3, var4)) {
 			var7 = true;
 		}
 
-		if(!var7) {
+		if (!var7) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var6);
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 		}

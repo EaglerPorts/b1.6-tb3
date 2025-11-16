@@ -1,13 +1,13 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockRedstoneOre extends Block {
 	private boolean field_468_a;
 
 	public BlockRedstoneOre(int var1, int var2, boolean var3) {
 		super(var1, var2, Material.rock);
-		if(var3) {
+		if (var3) {
 			this.setTickOnLoad(true);
 		}
 
@@ -35,14 +35,14 @@ public class BlockRedstoneOre extends Block {
 
 	private void func_320_h(World var1, int var2, int var3, int var4) {
 		this.func_319_i(var1, var2, var3, var4);
-		if(this.blockID == Block.oreRedstone.blockID) {
+		if (this.blockID == Block.oreRedstone.blockID) {
 			var1.setBlockWithNotify(var2, var3, var4, Block.oreRedstoneGlowing.blockID);
 		}
 
 	}
 
 	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {
-		if(this.blockID == Block.oreRedstoneGlowing.blockID) {
+		if (this.blockID == Block.oreRedstoneGlowing.blockID) {
 			var1.setBlockWithNotify(var2, var3, var4, Block.oreRedstone.blockID);
 		}
 
@@ -57,7 +57,7 @@ public class BlockRedstoneOre extends Block {
 	}
 
 	public void randomDisplayTick(World var1, int var2, int var3, int var4, Random var5) {
-		if(this.field_468_a) {
+		if (this.field_468_a) {
 			this.func_319_i(var1, var2, var3, var4);
 		}
 
@@ -67,35 +67,36 @@ public class BlockRedstoneOre extends Block {
 		Random var5 = var1.rand;
 		double var6 = 1.0D / 16.0D;
 
-		for(int var8 = 0; var8 < 6; ++var8) {
-			double var9 = (double)((float)var2 + var5.nextFloat());
-			double var11 = (double)((float)var3 + var5.nextFloat());
-			double var13 = (double)((float)var4 + var5.nextFloat());
-			if(var8 == 0 && !var1.isBlockOpaqueCube(var2, var3 + 1, var4)) {
-				var11 = (double)(var3 + 1) + var6;
+		for (int var8 = 0; var8 < 6; ++var8) {
+			double var9 = (double) ((float) var2 + var5.nextFloat());
+			double var11 = (double) ((float) var3 + var5.nextFloat());
+			double var13 = (double) ((float) var4 + var5.nextFloat());
+			if (var8 == 0 && !var1.isBlockOpaqueCube(var2, var3 + 1, var4)) {
+				var11 = (double) (var3 + 1) + var6;
 			}
 
-			if(var8 == 1 && !var1.isBlockOpaqueCube(var2, var3 - 1, var4)) {
-				var11 = (double)(var3 + 0) - var6;
+			if (var8 == 1 && !var1.isBlockOpaqueCube(var2, var3 - 1, var4)) {
+				var11 = (double) (var3 + 0) - var6;
 			}
 
-			if(var8 == 2 && !var1.isBlockOpaqueCube(var2, var3, var4 + 1)) {
-				var13 = (double)(var4 + 1) + var6;
+			if (var8 == 2 && !var1.isBlockOpaqueCube(var2, var3, var4 + 1)) {
+				var13 = (double) (var4 + 1) + var6;
 			}
 
-			if(var8 == 3 && !var1.isBlockOpaqueCube(var2, var3, var4 - 1)) {
-				var13 = (double)(var4 + 0) - var6;
+			if (var8 == 3 && !var1.isBlockOpaqueCube(var2, var3, var4 - 1)) {
+				var13 = (double) (var4 + 0) - var6;
 			}
 
-			if(var8 == 4 && !var1.isBlockOpaqueCube(var2 + 1, var3, var4)) {
-				var9 = (double)(var2 + 1) + var6;
+			if (var8 == 4 && !var1.isBlockOpaqueCube(var2 + 1, var3, var4)) {
+				var9 = (double) (var2 + 1) + var6;
 			}
 
-			if(var8 == 5 && !var1.isBlockOpaqueCube(var2 - 1, var3, var4)) {
-				var9 = (double)(var2 + 0) - var6;
+			if (var8 == 5 && !var1.isBlockOpaqueCube(var2 - 1, var3, var4)) {
+				var9 = (double) (var2 + 0) - var6;
 			}
 
-			if(var9 < (double)var2 || var9 > (double)(var2 + 1) || var11 < 0.0D || var11 > (double)(var3 + 1) || var13 < (double)var4 || var13 > (double)(var4 + 1)) {
+			if (var9 < (double) var2 || var9 > (double) (var2 + 1) || var11 < 0.0D || var11 > (double) (var3 + 1)
+					|| var13 < (double) var4 || var13 > (double) (var4 + 1)) {
 				var1.spawnParticle("reddust", var9, var11, var13, 0.0D, 0.0D, 0.0D);
 			}
 		}

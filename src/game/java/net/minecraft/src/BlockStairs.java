@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 import java.util.ArrayList;
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockStairs extends Block {
 	private Block modelBlock;
@@ -41,22 +41,22 @@ public class BlockStairs extends Block {
 
 	public void getCollidingBoundingBoxes(World var1, int var2, int var3, int var4, AxisAlignedBB var5, ArrayList var6) {
 		int var7 = var1.getBlockMetadata(var2, var3, var4);
-		if(var7 == 0) {
+		if (var7 == 0) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.5F, 0.5F, 1.0F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
 			this.setBlockBounds(0.5F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
-		} else if(var7 == 1) {
+		} else if (var7 == 1) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.5F, 1.0F, 1.0F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
 			this.setBlockBounds(0.5F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
-		} else if(var7 == 2) {
+		} else if (var7 == 2) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 0.5F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
 			this.setBlockBounds(0.0F, 0.0F, 0.5F, 1.0F, 1.0F, 1.0F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
-		} else if(var7 == 3) {
+		} else if (var7 == 3) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.5F);
 			super.getCollidingBoundingBoxes(var1, var2, var3, var4, var5, var6);
 			this.setBlockBounds(0.0F, 0.0F, 0.5F, 1.0F, 0.5F, 1.0F);
@@ -168,20 +168,20 @@ public class BlockStairs extends Block {
 	}
 
 	public void onBlockPlacedBy(World var1, int var2, int var3, int var4, EntityLiving var5) {
-		int var6 = MathHelper.floor_double((double)(var5.aR * 4.0F / 360.0F) + 0.5D) & 3;
-		if(var6 == 0) {
+		int var6 = MathHelper.floor_double((double) (var5.aR * 4.0F / 360.0F) + 0.5D) & 3;
+		if (var6 == 0) {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, 2);
 		}
 
-		if(var6 == 1) {
+		if (var6 == 1) {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, 1);
 		}
 
-		if(var6 == 2) {
+		if (var6 == 2) {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, 3);
 		}
 
-		if(var6 == 3) {
+		if (var6 == 3) {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, 0);
 		}
 

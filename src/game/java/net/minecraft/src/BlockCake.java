@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockCake extends Block {
 	protected BlockCake(int var1, int var2) {
@@ -11,7 +11,7 @@ public class BlockCake extends Block {
 	public void setBlockBoundsBasedOnState(IBlockAccess var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
 		float var6 = 1.0F / 16.0F;
-		float var7 = (float)(1 + var5 * 2) / 16.0F;
+		float var7 = (float) (1 + var5 * 2) / 16.0F;
 		float var8 = 0.5F;
 		this.setBlockBounds(var7, 0.0F, var6, 1.0F - var6, var8, 1.0F - var6);
 	}
@@ -25,25 +25,32 @@ public class BlockCake extends Block {
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
 		float var6 = 1.0F / 16.0F;
-		float var7 = (float)(1 + var5 * 2) / 16.0F;
+		float var7 = (float) (1 + var5 * 2) / 16.0F;
 		float var8 = 0.5F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)var2 + var7), (double)var3, (double)((float)var4 + var6), (double)((float)(var2 + 1) - var6), (double)((float)var3 + var8 - var6), (double)((float)(var4 + 1) - var6));
+		return AxisAlignedBB.getBoundingBoxFromPool((double) ((float) var2 + var7), (double) var3,
+				(double) ((float) var4 + var6), (double) ((float) (var2 + 1) - var6), (double) ((float) var3 + var8 - var6),
+				(double) ((float) (var4 + 1) - var6));
 	}
 
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
 		float var6 = 1.0F / 16.0F;
-		float var7 = (float)(1 + var5 * 2) / 16.0F;
+		float var7 = (float) (1 + var5 * 2) / 16.0F;
 		float var8 = 0.5F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)var2 + var7), (double)var3, (double)((float)var4 + var6), (double)((float)(var2 + 1) - var6), (double)((float)var3 + var8), (double)((float)(var4 + 1) - var6));
+		return AxisAlignedBB.getBoundingBoxFromPool((double) ((float) var2 + var7), (double) var3,
+				(double) ((float) var4 + var6), (double) ((float) (var2 + 1) - var6), (double) ((float) var3 + var8),
+				(double) ((float) (var4 + 1) - var6));
 	}
 
 	public int getBlockTextureFromSideAndMetadata(int var1, int var2) {
-		return var1 == 1 ? this.blockIndexInTexture : (var1 == 0 ? this.blockIndexInTexture + 3 : (var2 > 0 && var1 == 4 ? this.blockIndexInTexture + 2 : this.blockIndexInTexture + 1));
+		return var1 == 1 ? this.blockIndexInTexture
+				: (var1 == 0 ? this.blockIndexInTexture + 3
+						: (var2 > 0 && var1 == 4 ? this.blockIndexInTexture + 2 : this.blockIndexInTexture + 1));
 	}
 
 	public int getBlockTextureFromSide(int var1) {
-		return var1 == 1 ? this.blockIndexInTexture : (var1 == 0 ? this.blockIndexInTexture + 3 : this.blockIndexInTexture + 1);
+		return var1 == 1 ? this.blockIndexInTexture
+				: (var1 == 0 ? this.blockIndexInTexture + 3 : this.blockIndexInTexture + 1);
 	}
 
 	public boolean renderAsNormalBlock() {
@@ -64,10 +71,10 @@ public class BlockCake extends Block {
 	}
 
 	private void eatCakeSlice(World var1, int var2, int var3, int var4, EntityPlayer var5) {
-		if(var5.X < 20) {
+		if (var5.X < 20) {
 			var5.heal(3);
 			int var6 = var1.getBlockMetadata(var2, var3, var4) + 1;
-			if(var6 >= 6) {
+			if (var6 >= 6) {
 				var1.setBlockWithNotify(var2, var3, var4, 0);
 			} else {
 				var1.setBlockMetadataWithNotify(var2, var3, var4, var6);
@@ -82,7 +89,7 @@ public class BlockCake extends Block {
 	}
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
-		if(!this.canBlockStay(var1, var2, var3, var4)) {
+		if (!this.canBlockStay(var1, var2, var3, var4)) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 		}

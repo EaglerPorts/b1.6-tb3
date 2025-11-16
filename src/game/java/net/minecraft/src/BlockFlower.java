@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockFlower extends Block {
 	protected BlockFlower(int var1, int var2) {
@@ -12,7 +12,8 @@ public class BlockFlower extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World var1, int var2, int var3, int var4) {
-		return super.canPlaceBlockAt(var1, var2, var3, var4) && this.canThisPlantGrowOnThisBlockID(var1.getBlockId(var2, var3 - 1, var4));
+		return super.canPlaceBlockAt(var1, var2, var3, var4)
+				&& this.canThisPlantGrowOnThisBlockID(var1.getBlockId(var2, var3 - 1, var4));
 	}
 
 	protected boolean canThisPlantGrowOnThisBlockID(int var1) {
@@ -29,7 +30,7 @@ public class BlockFlower extends Block {
 	}
 
 	protected final void func_268_h(World var1, int var2, int var3, int var4) {
-		if(!this.canBlockStay(var1, var2, var3, var4)) {
+		if (!this.canBlockStay(var1, var2, var3, var4)) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 		}
@@ -37,7 +38,8 @@ public class BlockFlower extends Block {
 	}
 
 	public boolean canBlockStay(World var1, int var2, int var3, int var4) {
-		return (var1.getFullBlockLightValue(var2, var3, var4) >= 8 || var1.canBlockSeeTheSky(var2, var3, var4)) && this.canThisPlantGrowOnThisBlockID(var1.getBlockId(var2, var3 - 1, var4));
+		return (var1.getFullBlockLightValue(var2, var3, var4) >= 8 || var1.canBlockSeeTheSky(var2, var3, var4))
+				&& this.canThisPlantGrowOnThisBlockID(var1.getBlockId(var2, var3 - 1, var4));
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World var1, int var2, int var3, int var4) {

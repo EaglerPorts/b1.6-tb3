@@ -1,12 +1,12 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class WorldGenBigTree extends WorldGenerator {
-	static final byte[] field_882_a = new byte[]{(byte)2, (byte)0, (byte)0, (byte)1, (byte)2, (byte)1};
+	static final byte[] field_882_a = new byte[] { (byte) 2, (byte) 0, (byte) 0, (byte) 1, (byte) 2, (byte) 1 };
 	Random field_881_b = new Random();
 	World worldObj;
-	int[] basePos = new int[]{0, 0, 0};
+	int[] basePos = new int[] { 0, 0, 0 };
 	int field_878_e = 0;
 	int height;
 	double field_876_g = 0.618D;
@@ -20,13 +20,13 @@ public class WorldGenBigTree extends WorldGenerator {
 	int[][] field_868_o;
 
 	void func_521_a() {
-		this.height = (int)((double)this.field_878_e * this.field_876_g);
-		if(this.height >= this.field_878_e) {
+		this.height = (int) ((double) this.field_878_e * this.field_876_g);
+		if (this.height >= this.field_878_e) {
 			this.height = this.field_878_e - 1;
 		}
 
-		int var1 = (int)(1.382D + Math.pow(this.field_872_k * (double)this.field_878_e / 13.0D, 2.0D));
-		if(var1 < 1) {
+		int var1 = (int) (1.382D + Math.pow(this.field_872_k * (double) this.field_878_e / 13.0D, 2.0D));
+		if (var1 < 1) {
 			var1 = 1;
 		}
 
@@ -41,32 +41,33 @@ public class WorldGenBigTree extends WorldGenerator {
 		var2[0][3] = var5;
 		--var3;
 
-		while(true) {
-			while(var6 >= 0) {
+		while (true) {
+			while (var6 >= 0) {
 				int var7 = 0;
 				float var8 = this.func_528_a(var6);
-				if(var8 < 0.0F) {
+				if (var8 < 0.0F) {
 					--var3;
 					--var6;
 				} else {
-					for(double var9 = 0.5D; var7 < var1; ++var7) {
-						double var11 = this.field_873_j * (double)var8 * ((double)this.field_881_b.nextFloat() + 0.328D);
-						double var13 = (double)this.field_881_b.nextFloat() * 2.0D * 3.14159D;
-						int var15 = MathHelper.floor_double(var11 * Math.sin(var13) + (double)this.basePos[0] + var9);
-						int var16 = MathHelper.floor_double(var11 * Math.cos(var13) + (double)this.basePos[2] + var9);
-						int[] var17 = new int[]{var15, var3, var16};
-						int[] var18 = new int[]{var15, var3 + this.field_869_n, var16};
-						if(this.func_524_a(var17, var18) == -1) {
-							int[] var19 = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]};
-							double var20 = Math.sqrt(Math.pow((double)Math.abs(this.basePos[0] - var17[0]), 2.0D) + Math.pow((double)Math.abs(this.basePos[2] - var17[2]), 2.0D));
+					for (double var9 = 0.5D; var7 < var1; ++var7) {
+						double var11 = this.field_873_j * (double) var8 * ((double) this.field_881_b.nextFloat() + 0.328D);
+						double var13 = (double) this.field_881_b.nextFloat() * 2.0D * 3.14159D;
+						int var15 = MathHelper.floor_double(var11 * Math.sin(var13) + (double) this.basePos[0] + var9);
+						int var16 = MathHelper.floor_double(var11 * Math.cos(var13) + (double) this.basePos[2] + var9);
+						int[] var17 = new int[] { var15, var3, var16 };
+						int[] var18 = new int[] { var15, var3 + this.field_869_n, var16 };
+						if (this.func_524_a(var17, var18) == -1) {
+							int[] var19 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };
+							double var20 = Math.sqrt(Math.pow((double) Math.abs(this.basePos[0] - var17[0]), 2.0D)
+									+ Math.pow((double) Math.abs(this.basePos[2] - var17[2]), 2.0D));
 							double var22 = var20 * this.field_874_i;
-							if((double)var17[1] - var22 > (double)var5) {
+							if ((double) var17[1] - var22 > (double) var5) {
 								var19[1] = var5;
 							} else {
-								var19[1] = (int)((double)var17[1] - var22);
+								var19[1] = (int) ((double) var17[1] - var22);
 							}
 
-							if(this.func_524_a(var19, var17) == -1) {
+							if (this.func_524_a(var19, var17) == -1) {
 								var2[var4][0] = var15;
 								var2[var4][1] = var3;
 								var2[var4][2] = var16;
@@ -88,32 +89,32 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	void func_523_a(int var1, int var2, int var3, float var4, byte var5, int var6) {
-		int var7 = (int)((double)var4 + 0.618D);
+		int var7 = (int) ((double) var4 + 0.618D);
 		byte var8 = field_882_a[var5];
 		byte var9 = field_882_a[var5 + 3];
-		int[] var10 = new int[]{var1, var2, var3};
-		int[] var11 = new int[]{0, 0, 0};
+		int[] var10 = new int[] { var1, var2, var3 };
+		int[] var11 = new int[] { 0, 0, 0 };
 		int var12 = -var7;
 		int var13 = -var7;
 
-		label32:
-		for(var11[var5] = var10[var5]; var12 <= var7; ++var12) {
+		label32: for (var11[var5] = var10[var5]; var12 <= var7; ++var12) {
 			var11[var8] = var10[var8] + var12;
 			var13 = -var7;
 
-			while(true) {
-				while(true) {
-					if(var13 > var7) {
+			while (true) {
+				while (true) {
+					if (var13 > var7) {
 						continue label32;
 					}
 
-					double var15 = Math.sqrt(Math.pow((double)Math.abs(var12) + 0.5D, 2.0D) + Math.pow((double)Math.abs(var13) + 0.5D, 2.0D));
-					if(var15 > (double)var4) {
+					double var15 = Math
+							.sqrt(Math.pow((double) Math.abs(var12) + 0.5D, 2.0D) + Math.pow((double) Math.abs(var13) + 0.5D, 2.0D));
+					if (var15 > (double) var4) {
 						++var13;
 					} else {
 						var11[var9] = var10[var9] + var13;
 						int var14 = this.worldObj.getBlockId(var11[0], var11[1], var11[2]);
-						if(var14 != 0 && var14 != 18) {
+						if (var14 != 0 && var14 != 18) {
 							++var13;
 						} else {
 							this.worldObj.setBlock(var11[0], var11[1], var11[2], var6);
@@ -127,18 +128,18 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	float func_528_a(int var1) {
-		if((double)var1 < (double)((float)this.field_878_e) * 0.3D) {
+		if ((double) var1 < (double) ((float) this.field_878_e) * 0.3D) {
 			return -1.618F;
 		} else {
-			float var2 = (float)this.field_878_e / 2.0F;
-			float var3 = (float)this.field_878_e / 2.0F - (float)var1;
+			float var2 = (float) this.field_878_e / 2.0F;
+			float var3 = (float) this.field_878_e / 2.0F - (float) var1;
 			float var4;
-			if(var3 == 0.0F) {
+			if (var3 == 0.0F) {
 				var4 = var2;
-			} else if(Math.abs(var3) >= var2) {
+			} else if (Math.abs(var3) >= var2) {
 				var4 = 0.0F;
 			} else {
-				var4 = (float)Math.sqrt(Math.pow((double)Math.abs(var2), 2.0D) - Math.pow((double)Math.abs(var3), 2.0D));
+				var4 = (float) Math.sqrt(Math.pow((double) Math.abs(var2), 2.0D) - Math.pow((double) Math.abs(var3), 2.0D));
 			}
 
 			var4 *= 0.5F;
@@ -153,44 +154,44 @@ public class WorldGenBigTree extends WorldGenerator {
 	void func_520_a(int var1, int var2, int var3) {
 		int var4 = var2;
 
-		for(int var5 = var2 + this.field_869_n; var4 < var5; ++var4) {
+		for (int var5 = var2 + this.field_869_n; var4 < var5; ++var4) {
 			float var6 = this.func_526_b(var4 - var2);
-			this.func_523_a(var1, var4, var3, var6, (byte)1, 18);
+			this.func_523_a(var1, var4, var3, var6, (byte) 1, 18);
 		}
 
 	}
 
 	void func_522_a(int[] var1, int[] var2, int var3) {
-		int[] var4 = new int[]{0, 0, 0};
+		int[] var4 = new int[] { 0, 0, 0 };
 		byte var5 = 0;
 
 		byte var6;
-		for(var6 = 0; var5 < 3; ++var5) {
+		for (var6 = 0; var5 < 3; ++var5) {
 			var4[var5] = var2[var5] - var1[var5];
-			if(Math.abs(var4[var5]) > Math.abs(var4[var6])) {
+			if (Math.abs(var4[var5]) > Math.abs(var4[var6])) {
 				var6 = var5;
 			}
 		}
 
-		if(var4[var6] != 0) {
+		if (var4[var6] != 0) {
 			byte var7 = field_882_a[var6];
 			byte var8 = field_882_a[var6 + 3];
 			byte var9;
-			if(var4[var6] > 0) {
+			if (var4[var6] > 0) {
 				var9 = 1;
 			} else {
 				var9 = -1;
 			}
 
-			double var10 = (double)var4[var7] / (double)var4[var6];
-			double var12 = (double)var4[var8] / (double)var4[var6];
-			int[] var14 = new int[]{0, 0, 0};
+			double var10 = (double) var4[var7] / (double) var4[var6];
+			double var12 = (double) var4[var8] / (double) var4[var6];
+			int[] var14 = new int[] { 0, 0, 0 };
 			int var15 = 0;
 
-			for(int var16 = var4[var6] + var9; var15 != var16; var15 += var9) {
-				var14[var6] = MathHelper.floor_double((double)(var1[var6] + var15) + 0.5D);
-				var14[var7] = MathHelper.floor_double((double)var1[var7] + (double)var15 * var10 + 0.5D);
-				var14[var8] = MathHelper.floor_double((double)var1[var8] + (double)var15 * var12 + 0.5D);
+			for (int var16 = var4[var6] + var9; var15 != var16; var15 += var9) {
+				var14[var6] = MathHelper.floor_double((double) (var1[var6] + var15) + 0.5D);
+				var14[var7] = MathHelper.floor_double((double) var1[var7] + (double) var15 * var10 + 0.5D);
+				var14[var8] = MathHelper.floor_double((double) var1[var8] + (double) var15 * var12 + 0.5D);
 				this.worldObj.setBlock(var14[0], var14[1], var14[2], var3);
 			}
 
@@ -200,7 +201,7 @@ public class WorldGenBigTree extends WorldGenerator {
 	void func_518_b() {
 		int var1 = 0;
 
-		for(int var2 = this.field_868_o.length; var1 < var2; ++var1) {
+		for (int var2 = this.field_868_o.length; var1 < var2; ++var1) {
 			int var3 = this.field_868_o[var1][0];
 			int var4 = this.field_868_o[var1][1];
 			int var5 = this.field_868_o[var1][2];
@@ -210,7 +211,7 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	boolean func_527_c(int var1) {
-		return (double)var1 >= (double)this.field_878_e * 0.2D;
+		return (double) var1 >= (double) this.field_878_e * 0.2D;
 	}
 
 	void func_529_c() {
@@ -218,10 +219,10 @@ public class WorldGenBigTree extends WorldGenerator {
 		int var2 = this.basePos[1];
 		int var3 = this.basePos[1] + this.height;
 		int var4 = this.basePos[2];
-		int[] var5 = new int[]{var1, var2, var4};
-		int[] var6 = new int[]{var1, var3, var4};
+		int[] var5 = new int[] { var1, var2, var4 };
+		int[] var6 = new int[] { var1, var3, var4 };
 		this.func_522_a(var5, var6, 17);
-		if(this.field_871_l == 2) {
+		if (this.field_871_l == 2) {
 			++var5[0];
 			++var6[0];
 			this.func_522_a(var5, var6, 17);
@@ -239,12 +240,12 @@ public class WorldGenBigTree extends WorldGenerator {
 		int var1 = 0;
 		int var2 = this.field_868_o.length;
 
-		for(int[] var3 = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]}; var1 < var2; ++var1) {
+		for (int[] var3 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] }; var1 < var2; ++var1) {
 			int[] var4 = this.field_868_o[var1];
-			int[] var5 = new int[]{var4[0], var4[1], var4[2]};
+			int[] var5 = new int[] { var4[0], var4[1], var4[2] };
 			var3[1] = var4[3];
 			int var6 = var3[1] - this.basePos[1];
-			if(this.func_527_c(var6)) {
+			if (this.func_527_c(var6)) {
 				this.func_522_a(var3, var5, 17);
 			}
 		}
@@ -252,41 +253,41 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	int func_524_a(int[] var1, int[] var2) {
-		int[] var3 = new int[]{0, 0, 0};
+		int[] var3 = new int[] { 0, 0, 0 };
 		byte var4 = 0;
 
 		byte var5;
-		for(var5 = 0; var4 < 3; ++var4) {
+		for (var5 = 0; var4 < 3; ++var4) {
 			var3[var4] = var2[var4] - var1[var4];
-			if(Math.abs(var3[var4]) > Math.abs(var3[var5])) {
+			if (Math.abs(var3[var4]) > Math.abs(var3[var5])) {
 				var5 = var4;
 			}
 		}
 
-		if(var3[var5] == 0) {
+		if (var3[var5] == 0) {
 			return -1;
 		} else {
 			byte var6 = field_882_a[var5];
 			byte var7 = field_882_a[var5 + 3];
 			byte var8;
-			if(var3[var5] > 0) {
+			if (var3[var5] > 0) {
 				var8 = 1;
 			} else {
 				var8 = -1;
 			}
 
-			double var9 = (double)var3[var6] / (double)var3[var5];
-			double var11 = (double)var3[var7] / (double)var3[var5];
-			int[] var13 = new int[]{0, 0, 0};
+			double var9 = (double) var3[var6] / (double) var3[var5];
+			double var11 = (double) var3[var7] / (double) var3[var5];
+			int[] var13 = new int[] { 0, 0, 0 };
 			int var14 = 0;
 
 			int var15;
-			for(var15 = var3[var5] + var8; var14 != var15; var14 += var8) {
+			for (var15 = var3[var5] + var8; var14 != var15; var14 += var8) {
 				var13[var5] = var1[var5] + var14;
-				var13[var6] = MathHelper.floor_double((double)var1[var6] + (double)var14 * var9);
-				var13[var7] = MathHelper.floor_double((double)var1[var7] + (double)var14 * var11);
+				var13[var6] = MathHelper.floor_double((double) var1[var6] + (double) var14 * var9);
+				var13[var7] = MathHelper.floor_double((double) var1[var7] + (double) var14 * var11);
 				int var16 = this.worldObj.getBlockId(var13[0], var13[1], var13[2]);
-				if(var16 != 0 && var16 != 18) {
+				if (var16 != 0 && var16 != 18) {
 					break;
 				}
 			}
@@ -296,16 +297,16 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	boolean func_519_e() {
-		int[] var1 = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]};
-		int[] var2 = new int[]{this.basePos[0], this.basePos[1] + this.field_878_e - 1, this.basePos[2]};
+		int[] var1 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };
+		int[] var2 = new int[] { this.basePos[0], this.basePos[1] + this.field_878_e - 1, this.basePos[2] };
 		int var3 = this.worldObj.getBlockId(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
-		if(var3 != 2 && var3 != 3) {
+		if (var3 != 2 && var3 != 3) {
 			return false;
 		} else {
 			int var4 = this.func_524_a(var1, var2);
-			if(var4 == -1) {
+			if (var4 == -1) {
 				return true;
-			} else if(var4 < 6) {
+			} else if (var4 < 6) {
 				return false;
 			} else {
 				this.field_878_e = var4;
@@ -315,8 +316,8 @@ public class WorldGenBigTree extends WorldGenerator {
 	}
 
 	public void func_517_a(double var1, double var3, double var5) {
-		this.field_870_m = (int)(var1 * 12.0D);
-		if(var1 > 0.5D) {
+		this.field_870_m = (int) (var1 * 12.0D);
+		if (var1 > 0.5D) {
 			this.field_869_n = 5;
 		}
 
@@ -331,11 +332,11 @@ public class WorldGenBigTree extends WorldGenerator {
 		this.basePos[0] = var3;
 		this.basePos[1] = var4;
 		this.basePos[2] = var5;
-		if(this.field_878_e == 0) {
+		if (this.field_878_e == 0) {
 			this.field_878_e = 5 + this.field_881_b.nextInt(this.field_870_m);
 		}
 
-		if(!this.func_519_e()) {
+		if (!this.func_519_e()) {
 			return false;
 		} else {
 			this.func_521_a();

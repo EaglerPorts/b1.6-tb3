@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class WorldChunkManager {
 	private NoiseGeneratorOctaves2 field_4194_e;
@@ -29,7 +29,8 @@ public class WorldChunkManager {
 	}
 
 	public double getTemperature(int var1, int var2) {
-		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double)var1, (double)var2, 1, 1, (double)0.025F, (double)0.025F, 0.5D);
+		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double) var1, (double) var2, 1, 1,
+				(double) 0.025F, (double) 0.025F, 0.5D);
 		return this.temperature[0];
 	}
 
@@ -39,26 +40,28 @@ public class WorldChunkManager {
 	}
 
 	public double[] getTemperatures(double[] var1, int var2, int var3, int var4, int var5) {
-		if(var1 == null || var1.length < var4 * var5) {
+		if (var1 == null || var1.length < var4 * var5) {
 			var1 = new double[var4 * var5];
 		}
 
-		var1 = this.field_4194_e.func_4112_a(var1, (double)var2, (double)var3, var4, var5, (double)0.025F, (double)0.025F, 0.25D);
-		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double)var2, (double)var3, var4, var5, 0.25D, 0.25D, 0.5882352941176471D);
+		var1 = this.field_4194_e.func_4112_a(var1, (double) var2, (double) var3, var4, var5, (double) 0.025F,
+				(double) 0.025F, 0.25D);
+		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double) var2, (double) var3, var4, var5,
+				0.25D, 0.25D, 0.5882352941176471D);
 		int var6 = 0;
 
-		for(int var7 = 0; var7 < var4; ++var7) {
-			for(int var8 = 0; var8 < var5; ++var8) {
+		for (int var7 = 0; var7 < var4; ++var7) {
+			for (int var8 = 0; var8 < var5; ++var8) {
 				double var9 = this.field_4196_c[var6] * 1.1D + 0.5D;
 				double var11 = 0.01D;
 				double var13 = 1.0D - var11;
 				double var15 = (var1[var6] * 0.15D + 0.7D) * var13 + var9 * var11;
 				var15 = 1.0D - (1.0D - var15) * (1.0D - var15);
-				if(var15 < 0.0D) {
+				if (var15 < 0.0D) {
 					var15 = 0.0D;
 				}
 
-				if(var15 > 1.0D) {
+				if (var15 > 1.0D) {
 					var15 = 1.0D;
 				}
 
@@ -71,17 +74,20 @@ public class WorldChunkManager {
 	}
 
 	public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] var1, int var2, int var3, int var4, int var5) {
-		if(var1 == null || var1.length < var4 * var5) {
+		if (var1 == null || var1.length < var4 * var5) {
 			var1 = new BiomeGenBase[var4 * var5];
 		}
 
-		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double)var2, (double)var3, var4, var4, (double)0.025F, (double)0.025F, 0.25D);
-		this.humidity = this.field_4193_f.func_4112_a(this.humidity, (double)var2, (double)var3, var4, var4, (double)0.05F, (double)0.05F, 1.0D / 3.0D);
-		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double)var2, (double)var3, var4, var4, 0.25D, 0.25D, 0.5882352941176471D);
+		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double) var2, (double) var3, var4, var4,
+				(double) 0.025F, (double) 0.025F, 0.25D);
+		this.humidity = this.field_4193_f.func_4112_a(this.humidity, (double) var2, (double) var3, var4, var4,
+				(double) 0.05F, (double) 0.05F, 1.0D / 3.0D);
+		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double) var2, (double) var3, var4, var4,
+				0.25D, 0.25D, 0.5882352941176471D);
 		int var6 = 0;
 
-		for(int var7 = 0; var7 < var4; ++var7) {
-			for(int var8 = 0; var8 < var5; ++var8) {
+		for (int var7 = 0; var7 < var4; ++var7) {
+			for (int var8 = 0; var8 < var5; ++var8) {
 				double var9 = this.field_4196_c[var6] * 1.1D + 0.5D;
 				double var11 = 0.01D;
 				double var13 = 1.0D - var11;
@@ -90,19 +96,19 @@ public class WorldChunkManager {
 				var13 = 1.0D - var11;
 				double var17 = (this.humidity[var6] * 0.15D + 0.5D) * var13 + var9 * var11;
 				var15 = 1.0D - (1.0D - var15) * (1.0D - var15);
-				if(var15 < 0.0D) {
+				if (var15 < 0.0D) {
 					var15 = 0.0D;
 				}
 
-				if(var17 < 0.0D) {
+				if (var17 < 0.0D) {
 					var17 = 0.0D;
 				}
 
-				if(var15 > 1.0D) {
+				if (var15 > 1.0D) {
 					var15 = 1.0D;
 				}
 
-				if(var17 > 1.0D) {
+				if (var17 > 1.0D) {
 					var17 = 1.0D;
 				}
 

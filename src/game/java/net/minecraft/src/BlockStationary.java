@@ -1,12 +1,12 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockStationary extends BlockFluid {
 	protected BlockStationary(int var1, Material var2) {
 		super(var1, var2);
 		this.setTickOnLoad(false);
-		if(var2 == Material.lava) {
+		if (var2 == Material.lava) {
 			this.setTickOnLoad(true);
 		}
 
@@ -14,7 +14,7 @@ public class BlockStationary extends BlockFluid {
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
 		super.onNeighborBlockChange(var1, var2, var3, var4, var5);
-		if(var1.getBlockId(var2, var3, var4) == this.blockID) {
+		if (var1.getBlockId(var2, var3, var4) == this.blockID) {
 			this.func_30004_j(var1, var2, var3, var4);
 		}
 
@@ -30,20 +30,22 @@ public class BlockStationary extends BlockFluid {
 	}
 
 	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {
-		if(this.blockMaterial == Material.lava) {
+		if (this.blockMaterial == Material.lava) {
 			int var6 = var5.nextInt(3);
 
-			for(int var7 = 0; var7 < var6; ++var7) {
+			for (int var7 = 0; var7 < var6; ++var7) {
 				var2 += var5.nextInt(3) - 1;
 				++var3;
 				var4 += var5.nextInt(3) - 1;
 				int var8 = var1.getBlockId(var2, var3, var4);
-				if(var8 == 0) {
-					if(this.func_301_k(var1, var2 - 1, var3, var4) || this.func_301_k(var1, var2 + 1, var3, var4) || this.func_301_k(var1, var2, var3, var4 - 1) || this.func_301_k(var1, var2, var3, var4 + 1) || this.func_301_k(var1, var2, var3 - 1, var4) || this.func_301_k(var1, var2, var3 + 1, var4)) {
+				if (var8 == 0) {
+					if (this.func_301_k(var1, var2 - 1, var3, var4) || this.func_301_k(var1, var2 + 1, var3, var4)
+							|| this.func_301_k(var1, var2, var3, var4 - 1) || this.func_301_k(var1, var2, var3, var4 + 1)
+							|| this.func_301_k(var1, var2, var3 - 1, var4) || this.func_301_k(var1, var2, var3 + 1, var4)) {
 						var1.setBlockWithNotify(var2, var3, var4, Block.fire.blockID);
 						return;
 					}
-				} else if(Block.blocksList[var8].blockMaterial.getIsSolid()) {
+				} else if (Block.blocksList[var8].blockMaterial.getIsSolid()) {
 					return;
 				}
 			}

@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-import java.util.Random;
+import net.lax1dude.eaglercraft.Random;
 
 public class BlockButton extends Block {
 	protected BlockButton(int var1, int var2) {
@@ -25,24 +25,29 @@ public class BlockButton extends Block {
 	}
 
 	public boolean canPlaceBlockOnSide(World var1, int var2, int var3, int var4, int var5) {
-		return var5 == 2 && var1.func_28100_h(var2, var3, var4 + 1) ? true : (var5 == 3 && var1.func_28100_h(var2, var3, var4 - 1) ? true : (var5 == 4 && var1.func_28100_h(var2 + 1, var3, var4) ? true : var5 == 5 && var1.func_28100_h(var2 - 1, var3, var4)));
+		return var5 == 2 && var1.func_28100_h(var2, var3, var4 + 1) ? true
+				: (var5 == 3 && var1.func_28100_h(var2, var3, var4 - 1) ? true
+						: (var5 == 4 && var1.func_28100_h(var2 + 1, var3, var4) ? true
+								: var5 == 5 && var1.func_28100_h(var2 - 1, var3, var4)));
 	}
 
 	public boolean canPlaceBlockAt(World var1, int var2, int var3, int var4) {
-		return var1.func_28100_h(var2 - 1, var3, var4) ? true : (var1.func_28100_h(var2 + 1, var3, var4) ? true : (var1.func_28100_h(var2, var3, var4 - 1) ? true : var1.func_28100_h(var2, var3, var4 + 1)));
+		return var1.func_28100_h(var2 - 1, var3, var4) ? true
+				: (var1.func_28100_h(var2 + 1, var3, var4) ? true
+						: (var1.func_28100_h(var2, var3, var4 - 1) ? true : var1.func_28100_h(var2, var3, var4 + 1)));
 	}
 
 	public void onBlockPlaced(World var1, int var2, int var3, int var4, int var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
 		int var7 = var6 & 8;
 		var6 &= 7;
-		if(var5 == 2 && var1.func_28100_h(var2, var3, var4 + 1)) {
+		if (var5 == 2 && var1.func_28100_h(var2, var3, var4 + 1)) {
 			var6 = 4;
-		} else if(var5 == 3 && var1.func_28100_h(var2, var3, var4 - 1)) {
+		} else if (var5 == 3 && var1.func_28100_h(var2, var3, var4 - 1)) {
 			var6 = 3;
-		} else if(var5 == 4 && var1.func_28100_h(var2 + 1, var3, var4)) {
+		} else if (var5 == 4 && var1.func_28100_h(var2 + 1, var3, var4)) {
 			var6 = 2;
-		} else if(var5 == 5 && var1.func_28100_h(var2 - 1, var3, var4)) {
+		} else if (var5 == 5 && var1.func_28100_h(var2 - 1, var3, var4)) {
 			var6 = 1;
 		} else {
 			var6 = this.getOrientation(var1, var2, var3, var4);
@@ -52,30 +57,32 @@ public class BlockButton extends Block {
 	}
 
 	private int getOrientation(World var1, int var2, int var3, int var4) {
-		return var1.func_28100_h(var2 - 1, var3, var4) ? 1 : (var1.func_28100_h(var2 + 1, var3, var4) ? 2 : (var1.func_28100_h(var2, var3, var4 - 1) ? 3 : (var1.func_28100_h(var2, var3, var4 + 1) ? 4 : 1)));
+		return var1.func_28100_h(var2 - 1, var3, var4) ? 1
+				: (var1.func_28100_h(var2 + 1, var3, var4) ? 2
+						: (var1.func_28100_h(var2, var3, var4 - 1) ? 3 : (var1.func_28100_h(var2, var3, var4 + 1) ? 4 : 1)));
 	}
 
 	public void onNeighborBlockChange(World var1, int var2, int var3, int var4, int var5) {
-		if(this.func_305_h(var1, var2, var3, var4)) {
+		if (this.func_305_h(var1, var2, var3, var4)) {
 			int var6 = var1.getBlockMetadata(var2, var3, var4) & 7;
 			boolean var7 = false;
-			if(!var1.func_28100_h(var2 - 1, var3, var4) && var6 == 1) {
+			if (!var1.func_28100_h(var2 - 1, var3, var4) && var6 == 1) {
 				var7 = true;
 			}
 
-			if(!var1.func_28100_h(var2 + 1, var3, var4) && var6 == 2) {
+			if (!var1.func_28100_h(var2 + 1, var3, var4) && var6 == 2) {
 				var7 = true;
 			}
 
-			if(!var1.func_28100_h(var2, var3, var4 - 1) && var6 == 3) {
+			if (!var1.func_28100_h(var2, var3, var4 - 1) && var6 == 3) {
 				var7 = true;
 			}
 
-			if(!var1.func_28100_h(var2, var3, var4 + 1) && var6 == 4) {
+			if (!var1.func_28100_h(var2, var3, var4 + 1) && var6 == 4) {
 				var7 = true;
 			}
 
-			if(var7) {
+			if (var7) {
 				this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 				var1.setBlockWithNotify(var2, var3, var4, 0);
 			}
@@ -84,7 +91,7 @@ public class BlockButton extends Block {
 	}
 
 	private boolean func_305_h(World var1, int var2, int var3, int var4) {
-		if(!this.canPlaceBlockAt(var1, var2, var3, var4)) {
+		if (!this.canPlaceBlockAt(var1, var2, var3, var4)) {
 			this.dropBlockAsItem(var1, var2, var3, var4, var1.getBlockMetadata(var2, var3, var4));
 			var1.setBlockWithNotify(var2, var3, var4, 0);
 			return false;
@@ -101,17 +108,17 @@ public class BlockButton extends Block {
 		float var9 = 10.0F / 16.0F;
 		float var10 = 3.0F / 16.0F;
 		float var11 = 2.0F / 16.0F;
-		if(var7) {
+		if (var7) {
 			var11 = 1.0F / 16.0F;
 		}
 
-		if(var6 == 1) {
+		if (var6 == 1) {
 			this.setBlockBounds(0.0F, var8, 0.5F - var10, var11, var9, 0.5F + var10);
-		} else if(var6 == 2) {
+		} else if (var6 == 2) {
 			this.setBlockBounds(1.0F - var11, var8, 0.5F - var10, 1.0F, var9, 0.5F + var10);
-		} else if(var6 == 3) {
+		} else if (var6 == 3) {
 			this.setBlockBounds(0.5F - var10, var8, 0.0F, 0.5F + var10, var9, var11);
-		} else if(var6 == 4) {
+		} else if (var6 == 4) {
 			this.setBlockBounds(0.5F - var10, var8, 1.0F - var11, 0.5F + var10, var9, 1.0F);
 		}
 
@@ -125,20 +132,21 @@ public class BlockButton extends Block {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
 		int var7 = var6 & 7;
 		int var8 = 8 - (var6 & 8);
-		if(var8 == 0) {
+		if (var8 == 0) {
 			return true;
 		} else {
 			var1.setBlockMetadataWithNotify(var2, var3, var4, var7 + var8);
 			var1.markBlocksDirty(var2, var3, var4, var2, var3, var4);
-			var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.click", 0.3F, 0.6F);
+			var1.playSoundEffect((double) var2 + 0.5D, (double) var3 + 0.5D, (double) var4 + 0.5D, "random.click", 0.3F,
+					0.6F);
 			var1.notifyBlocksOfNeighborChange(var2, var3, var4, this.blockID);
-			if(var7 == 1) {
+			if (var7 == 1) {
 				var1.notifyBlocksOfNeighborChange(var2 - 1, var3, var4, this.blockID);
-			} else if(var7 == 2) {
+			} else if (var7 == 2) {
 				var1.notifyBlocksOfNeighborChange(var2 + 1, var3, var4, this.blockID);
-			} else if(var7 == 3) {
+			} else if (var7 == 3) {
 				var1.notifyBlocksOfNeighborChange(var2, var3, var4 - 1, this.blockID);
-			} else if(var7 == 4) {
+			} else if (var7 == 4) {
 				var1.notifyBlocksOfNeighborChange(var2, var3, var4 + 1, this.blockID);
 			} else {
 				var1.notifyBlocksOfNeighborChange(var2, var3 - 1, var4, this.blockID);
@@ -151,16 +159,16 @@ public class BlockButton extends Block {
 
 	public void onBlockRemoval(World var1, int var2, int var3, int var4) {
 		int var5 = var1.getBlockMetadata(var2, var3, var4);
-		if((var5 & 8) > 0) {
+		if ((var5 & 8) > 0) {
 			var1.notifyBlocksOfNeighborChange(var2, var3, var4, this.blockID);
 			int var6 = var5 & 7;
-			if(var6 == 1) {
+			if (var6 == 1) {
 				var1.notifyBlocksOfNeighborChange(var2 - 1, var3, var4, this.blockID);
-			} else if(var6 == 2) {
+			} else if (var6 == 2) {
 				var1.notifyBlocksOfNeighborChange(var2 + 1, var3, var4, this.blockID);
-			} else if(var6 == 3) {
+			} else if (var6 == 3) {
 				var1.notifyBlocksOfNeighborChange(var2, var3, var4 - 1, this.blockID);
-			} else if(var6 == 4) {
+			} else if (var6 == 4) {
 				var1.notifyBlocksOfNeighborChange(var2, var3, var4 + 1, this.blockID);
 			} else {
 				var1.notifyBlocksOfNeighborChange(var2, var3 - 1, var4, this.blockID);
@@ -176,11 +184,13 @@ public class BlockButton extends Block {
 
 	public boolean isIndirectlyPoweringTo(World var1, int var2, int var3, int var4, int var5) {
 		int var6 = var1.getBlockMetadata(var2, var3, var4);
-		if((var6 & 8) == 0) {
+		if ((var6 & 8) == 0) {
 			return false;
 		} else {
 			int var7 = var6 & 7;
-			return var7 == 5 && var5 == 1 ? true : (var7 == 4 && var5 == 2 ? true : (var7 == 3 && var5 == 3 ? true : (var7 == 2 && var5 == 4 ? true : var7 == 1 && var5 == 5)));
+			return var7 == 5 && var5 == 1 ? true
+					: (var7 == 4 && var5 == 2 ? true
+							: (var7 == 3 && var5 == 3 ? true : (var7 == 2 && var5 == 4 ? true : var7 == 1 && var5 == 5)));
 		}
 	}
 
@@ -189,25 +199,26 @@ public class BlockButton extends Block {
 	}
 
 	public void updateTick(World var1, int var2, int var3, int var4, Random var5) {
-		if(!var1.multiplayerWorld) {
+		if (!var1.multiplayerWorld) {
 			int var6 = var1.getBlockMetadata(var2, var3, var4);
-			if((var6 & 8) != 0) {
+			if ((var6 & 8) != 0) {
 				var1.setBlockMetadataWithNotify(var2, var3, var4, var6 & 7);
 				var1.notifyBlocksOfNeighborChange(var2, var3, var4, this.blockID);
 				int var7 = var6 & 7;
-				if(var7 == 1) {
+				if (var7 == 1) {
 					var1.notifyBlocksOfNeighborChange(var2 - 1, var3, var4, this.blockID);
-				} else if(var7 == 2) {
+				} else if (var7 == 2) {
 					var1.notifyBlocksOfNeighborChange(var2 + 1, var3, var4, this.blockID);
-				} else if(var7 == 3) {
+				} else if (var7 == 3) {
 					var1.notifyBlocksOfNeighborChange(var2, var3, var4 - 1, this.blockID);
-				} else if(var7 == 4) {
+				} else if (var7 == 4) {
 					var1.notifyBlocksOfNeighborChange(var2, var3, var4 + 1, this.blockID);
 				} else {
 					var1.notifyBlocksOfNeighborChange(var2, var3 - 1, var4, this.blockID);
 				}
 
-				var1.playSoundEffect((double)var2 + 0.5D, (double)var3 + 0.5D, (double)var4 + 0.5D, "random.click", 0.3F, 0.5F);
+				var1.playSoundEffect((double) var2 + 0.5D, (double) var3 + 0.5D, (double) var4 + 0.5D, "random.click", 0.3F,
+						0.5F);
 				var1.markBlocksDirty(var2, var3, var4, var2, var3, var4);
 			}
 		}

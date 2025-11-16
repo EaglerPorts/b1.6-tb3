@@ -789,7 +789,7 @@ public class Minecraft implements Runnable {
 
 		if (!this.isGamePaused && this.theWorld != null) {
 			playerController.updateController();
-			if (!this.displayedNotice) {
+			if (!this.displayedNotice && false) {
 				if (++noticeTimer >= 150) {
 					if (thePlayer != null) {
 						this.displayedNotice = true;
