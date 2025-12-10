@@ -150,10 +150,12 @@ public class DirStorage {
     int i = 0;
     updateProgress(prog, I18n.format("storage.deleting"));
     for (VFile2 file : files) {
-      updateProgress(prog, I18n.format("storage.deleting.file", file.getPath().substring(subpath + 1)),
-          (int) Math.round((++i * 100.0) / files.size()));
-      if (file.exists())
-        file.delete();
+      if (file.getPath().startsWith(_root.getPath() + "/")) {
+        updateProgress(prog, I18n.format("storage.deleting.file", file.getPath().substring(subpath + 1)),
+            (int) Math.round((++i * 100.0) / files.size()));
+        if (file.exists())
+          file.delete();
+      }
     }
     removeFromManifest(name);
   }
